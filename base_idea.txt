@@ -1,0 +1,15 @@
+rough idea:  
+---
+we'll create 1 agent which is expert in one task and have every tools and resources needed for that one task and merge them in single workspace, not 1 agent handling everything task and dumping every resources + tools  
+---
+Agent 1 = Contextor, task:  
+generates/collect/build context about the Data (columns, table, schema, data quality, other imp things) Q&A (to get actual goal, rules, etc) and other Resources needed to perform end-to-end data analytics on given Data. clearify all the doubts, assumption and halucinations for upcoming agents  
+2. Router (The Main which is the only one will interact with user), task:  
+Divide the given Task into multiple sub-tasks and assign those to other agents, e.g user says "I want to clean this column's this problem and make that chart" it understands chose which agents to wake up and explain them and divide the task to Cleaner to clean it, feature engineer to add supports and visualizer to make chart.  
+3. Expert's Crew, Breakdown:  
+These are our Specialists which performs the Main Tasks with specific tools or MCP. They can Talk to each other like even if Router's Cordinations get miss something like: visualizer needs to visualize something but he don't have the clean data or features so it will talk to them and ask for do this and that so I can complete my task  
+4. Watcher, Task:  
+This Agent will monitor everything silently (no interpution to other agents) and Log everything in our vector store, and if  he founds that agent is halucinating or getting of track or not doing something which is obvious it will says "you don't have do this to achive that user said this so instead doing this  simply or complexly you can do this so you will get that" if agent is going to lazy it will explain scale up it and if agent is going too complex and advance it will explain him scale down to get 100% accurate what user said.  
+---
+All agents will share same convo memory which  Watcher Logged in Vector Store so no one repeat same process and each agent have track of progress  who did what so I can do this. every expert having Tools will have to go through with a validation layer which only allow auto-run for search queries and block delete/drop/update/append queries until User it self say "Allow Anyways", we could also add a sandbox so we can retrive from where every want like PowerQuery Editor But for any kind of data and Powered With Highly Expert, Smart and Safe Agents, Fully Autonomus + User freindly if want semi-auto control on project  
+---
